@@ -4,16 +4,17 @@ A local-first MVP that ingests product feedback from Slack, Jira, Google Docs, a
 
 ## 🚀 Quick Start (Demo Mode)
 
-Get up and running in under 10 minutes with fake data:
+Get up and running in **under 10 minutes** with the complete platform - backend API + frontend web UI:
 
 ```bash
-# 1. Clone and enter the repo
-cd produckai
+# 1. Clone the repo
+git clone https://github.com/rohitsaraff33-bit/produckai-backend.git
+cd produckai-backend
 
-# 2. Copy environment file
+# 2. Copy environment file (demo mode by default)
 cp .env.example .env
 
-# 3. Start all services (Postgres, Redis, API, Worker, Web)
+# 3. Start all services (Postgres, Redis, API, Worker, Web UI)
 make up
 
 # 4. Wait for services to be healthy (~30s), then run migrations
@@ -23,34 +24,64 @@ make migrate
 make seed
 make cluster
 
-# 6. Open the web UI
+# 6. Open the Web UI (Next.js frontend)
 open http://localhost:3000
 
-# 7. View API docs
+# 7. View API docs (FastAPI backend)
 open http://localhost:8000/docs
 ```
 
-**That's it!** You now have:
-- ✅ API running at http://localhost:8000
-- ✅ Web UI at http://localhost:3000
+**That's it!** You now have the **complete ProduckAI platform** running locally:
+- ✅ **Backend API** at http://localhost:8000 (FastAPI)
+- ✅ **Frontend Web UI** at http://localhost:3000 (Next.js)
 - ✅ Demo feedback from Slack, Jira, Google Docs, and Zoom
-- ✅ Clustered themes with ThemeScores
+- ✅ Clustered themes with priority scores
+- ✅ AI-generated insights ready for PRD generation
 
 ## 📊 What You'll See
 
-### Web UI (http://localhost:3000)
-- **Themes Board**: Top themes ranked by ThemeScore with sparklines
-- **Theme Detail**: Score breakdown, customer quotes with citations, linked tickets
-- **Search**: Unified search across all feedback
+### Frontend Web UI (http://localhost:3000) ⭐ NEW
+The complete visual interface for product managers:
+
+**Main Dashboard**:
+- **Themes Board**: Interactive cards showing top themes ranked by priority score (0-100)
+- **Filters**: By severity (Critical/High/Medium/Low), customer segment (Enterprise/Mid-Market/SMB), effort (High/Medium/Low)
+- **Priority Range Slider**: Filter themes by score range
+- **Customer Search**: Find themes affecting specific customers
+
+**Theme Detail View**:
+- Priority score breakdown with visual indicators
+- Full description and impact analysis
+- Affected customers list with ACV, segment, and feedback counts
+- Supporting customer quotes with timestamps
+- Recommended next steps
+
+**Integrations Page**:
+- OAuth setup for Slack, Google Drive, Zoom
+- Connection status and sync history
+- One-click connect buttons
+
+**Upload Page**:
+- CSV file upload with drag-and-drop
+- Template download
+- Bulk feedback import
+
+**Competitive Intelligence**:
+- Competitor analysis dashboard
+- Feature gap identification
+- Market positioning insights
+
+**Built with**: Next.js 14 (App Router), TypeScript, Tailwind CSS, SWR
 
 ### Chrome Extension (Jira Side-Panel)
 - Shows ThemeScore and top quotes when viewing a Jira ticket
 - "Copy PRD outline" button generates markdown with citations
 - Build: `make extension-build`, then load `apps/extension/dist` in Chrome
 
-### API (http://localhost:8000/docs)
-- Interactive Swagger docs
-- Try `/themes`, `/search`, `/tickets/{key}/score`
+### Backend API (http://localhost:8000/docs)
+- Interactive Swagger docs (OpenAPI 3.0)
+- Try `/themes`, `/search`, `/feedback`
+- 50+ REST endpoints for all operations
 
 ## 🏗️ Architecture
 
@@ -112,22 +143,40 @@ graph TB
 ## 📦 Project Structure
 
 ```
-produckai/
+produckai-backend/  (this repository - complete monorepo)
 ├── apps/
-│   ├── api/          # FastAPI backend
-│   ├── worker/       # Celery workers
-│   ├── web/          # Next.js frontend
-│   └── extension/    # Chrome extension
+│   ├── api/          # FastAPI backend (Python 3.11)
+│   │   ├── api/      # REST endpoints (~50 routes)
+│   │   ├── models/   # SQLAlchemy models
+│   │   ├── services/ # Business logic (clustering, scoring, etc.)
+│   │   └── scripts/  # Data seeding, ingestion, clustering
+│   ├── web/          # Next.js frontend (TypeScript) ⭐ OPEN SOURCE
+│   │   ├── src/app/  # App router pages
+│   │   ├── src/components/  # React components
+│   │   └── public/   # Static assets
+│   ├── worker/       # Celery workers (async tasks)
+│   └── extension/    # Chrome extension (Jira integration)
 ├── packages/
 │   └── shared/       # Shared types & scoring logic
 ├── infra/
 │   ├── alembic/      # Database migrations
 │   └── init-db.sql   # Postgres initialization
-├── samples/          # Demo data (Slack/Jira JSON)
-├── docker-compose.yml
-├── Makefile
-└── .env.example
+├── samples/          # Demo data (Slack/Jira/Zoom/GDocs)
+├── docker-compose.yml # Full stack orchestration
+├── Makefile          # 30+ dev commands
+├── INSTALLATION.md   # Detailed setup guide
+├── CONTRIBUTING.md   # Contribution guidelines
+├── SECURITY.md       # Security policy
+└── .env.example      # Environment template
 ```
+
+**What's included in this repo:**
+- ✅ **Complete Backend** - FastAPI + Postgres + Redis + Celery
+- ✅ **Complete Frontend** - Next.js Web UI (4,171 lines of TypeScript/TSX)
+- ✅ **Chrome Extension** - Jira integration
+- ✅ **Docker Setup** - One command to run everything
+- ✅ **Demo Data** - Sample feedback for testing
+- ✅ **Comprehensive Docs** - 1,750+ lines of documentation
 
 ## 🔧 Technology Stack
 
