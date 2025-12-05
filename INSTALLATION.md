@@ -18,8 +18,8 @@ Get up and running in **under 10 minutes** with Docker:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/rohitsaraff33-bit/produckai-backend.git
-cd produckai-backend
+git clone https://github.com/rohitsaraff33-bit/produckai-release-v1.0.0.git produckai
+cd produckai
 ```
 
 ### 2. Set Up Environment
@@ -133,7 +133,7 @@ psql -U produckai -d produckai -c "CREATE EXTENSION IF NOT EXISTS vector;"
 ### 3. Set Up Python Environment
 
 ```bash
-cd produckai-backend
+cd produckai
 python3.11 -m venv venv
 source venv/bin/activate
 
@@ -442,7 +442,7 @@ Now that your backend is running:
 
 - **Documentation**: See [README.md](README.md) for architecture and API docs
 - **Troubleshooting**: See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) (if available)
-- **GitHub Issues**: https://github.com/rohitsaraff33-bit/produckai-backend/issues
+- **GitHub Issues**: https://github.com/rohitsaraff33-bit/produckai-release-v1.0.0/issues
 - **Email**: rohitsaraff33@gmail.com
 
 ---

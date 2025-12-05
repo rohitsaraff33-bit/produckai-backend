@@ -5,7 +5,7 @@ Thank you for your interest in contributing to ProduckAI! This document provides
 ## 📧 Contact
 
 - **Creator**: Rohit Saraf ([rohitsaraff33@gmail.com](mailto:rohitsaraff33@gmail.com))
-- **GitHub Issues**: https://github.com/rohitsaraff33-bit/produckai-backend/issues
+- **GitHub Issues**: https://github.com/rohitsaraff33-bit/produckai-release-v1.0.0/issues
 
 ## 🎯 Vision
 
@@ -61,11 +61,11 @@ We especially welcome contributions in these areas:
 ```bash
 # Fork the repository on GitHub
 # Then clone your fork
-git clone https://github.com/YOUR_USERNAME/produckai-backend.git
-cd produckai-backend
+git clone https://github.com/YOUR_USERNAME/produckai-release-v1.0.0.git produckai
+cd produckai
 
 # Add upstream remote
-git remote add upstream https://github.com/rohitsaraff33-bit/produckai-backend.git
+git remote add upstream https://github.com/rohitsaraff33-bit/produckai-release-v1.0.0.git
 ```
 
 ### 2. Set Up Development Environment
@@ -347,7 +347,7 @@ docker compose exec api pytest -v
 
 ### Before Reporting
 
-1. **Search existing issues**: https://github.com/rohitsaraff33-bit/produckai-backend/issues
+1. **Search existing issues**: https://github.com/rohitsaraff33-bit/produckai-release-v1.0.0/issues
 2. **Check documentation**: [README.md](README.md), [INSTALLATION.md](INSTALLATION.md)
 3. **Verify it's reproducible**: Try on a clean installation
 
@@ -462,7 +462,7 @@ Contributors will be:
 
 ## 🤝 Join the Community
 
-- **GitHub Discussions**: https://github.com/rohitsaraff33-bit/produckai-backend/discussions
+- **GitHub Discussions**: https://github.com/rohitsaraff33-bit/produckai-release-v1.0.0/discussions
 - **Email**: rohitsaraff33@gmail.com
 
 We can't wait to see what you build! 🚀

@@ -8,8 +8,8 @@ Get up and running in **under 10 minutes** with the complete platform - backend 
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/rohitsaraff33-bit/produckai-backend.git
-cd produckai-backend
+git clone https://github.com/rohitsaraff33-bit/produckai-release-v1.0.0.git produckai
+cd produckai
 
 # 2. Copy environment file (demo mode by default)
 cp .env.example .env
@@ -143,7 +143,7 @@ graph TB
 ## 📦 Project Structure
 
 ```
-produckai-backend/  (this repository - complete monorepo)
+produckai/  (this repository - complete monorepo)
 ├── apps/
 │   ├── api/          # FastAPI backend (Python 3.11)
 │   │   ├── api/      # REST endpoints (~50 routes)
@@ -469,9 +469,9 @@ make shell-db
 
 ### Get in Touch
 - **Creator**: Rohit Saraf ([rohitsaraff33@gmail.com](mailto:rohitsaraff33@gmail.com))
-- **GitHub Repository**: https://github.com/rohitsaraff33-bit/produckai-backend
-- **GitHub Issues**: https://github.com/rohitsaraff33-bit/produckai-backend/issues
-- **GitHub Discussions**: https://github.com/rohitsaraff33-bit/produckai-backend/discussions
+- **GitHub Repository**: https://github.com/rohitsaraff33-bit/produckai-release-v1.0.0
+- **GitHub Issues**: https://github.com/rohitsaraff33-bit/produckai-release-v1.0.0/issues
+- **GitHub Discussions**: https://github.com/rohitsaraff33-bit/produckai-release-v1.0.0/discussions
 
 ### Vision & Community
 This project was built **for product managers, by product managers**. The goal is to create a thriving open source community where builders enhance integrations, improve clustering algorithms, and share learnings so the entire PM community benefits.

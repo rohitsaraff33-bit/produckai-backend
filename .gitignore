@@ -73,3 +73,7 @@ alembic/versions/*.pyc
 # Chrome extension
 apps/extension/dist/
 apps/extension/build/
+
+# MCP Server (separate repository)
+mcp-server/
+github-release/produckai-mcp-server/
