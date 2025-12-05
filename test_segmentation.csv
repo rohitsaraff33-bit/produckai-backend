@@ -1,0 +1,8 @@
+Company Name,ACV,Company Contact,Feedback
+"SMB Company 1",30000,"contact@smb1.com","Testing SMB segmentation with $30k ACV."
+"SMB Company 2",50000,"contact@smb2.com","Testing SMB boundary at exactly $50k ACV."
+"MM Company 1",51000,"contact@mm1.com","Testing MM segmentation just above $50k at $51k ACV."
+"MM Company 2",100000,"contact@mm2.com","Testing MM segmentation at $100k ACV."
+"MM Company 3",200000,"contact@mm3.com","Testing MM boundary at exactly $200k ACV."
+"ENT Company 1",201000,"contact@ent1.com","Testing ENT segmentation just above $200k at $201k ACV."
+"ENT Company 2",500000,"contact@ent2.com","Testing ENT segmentation at $500k ACV."

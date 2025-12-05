@@ -1,0 +1,17 @@
+# Netlify configuration for Next.js frontend
+[build]
+  base = "apps/web"
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NEXT_PUBLIC_API_URL = "${API_URL}"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Environment variables (set in Netlify dashboard)
+# NEXT_PUBLIC_API_URL=https://your-railway-api.railway.app

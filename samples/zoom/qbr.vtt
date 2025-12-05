@@ -1,0 +1,184 @@
+WEBVTT
+
+00:00:01.340 --> 00:00:05.670
+<v Jennifer Wu>Welcome everyone to our Q4 Quarterly Business Review.
+
+00:00:06.450 --> 00:00:10.780
+<v Jennifer Wu>Today we'll review customer feedback trends and product priorities.
+
+00:00:11.670 --> 00:00:16.340
+<v Mike Thompson>Thanks Jen. I've pulled together feedback from our top 20 accounts.
+
+00:00:17.220 --> 00:00:21.890
+<v Mike Thompson>The number one request across the board is bulk data import.
+
+00:00:22.780 --> 00:00:27.450
+<v Mike Thompson>Multiple customers are trying to migrate from legacy systems.
+
+00:00:28.340 --> 00:00:33.120
+<v Mike Thompson>Right now they have to manually enter thousands of records one by one.
+
+00:00:34.050 --> 00:00:38.670
+<v Jennifer Wu>How many customers has this affected? Do we have specific examples?
+
+00:00:39.560 --> 00:00:44.230
+<v Mike Thompson>At least five enterprise accounts. TechStart Inc is the most vocal.
+
+00:00:45.110 --> 00:00:49.780
+<v Mike Thompson>They have 10,000 legacy records they need to import.
+
+00:00:50.670 --> 00:00:55.340
+<v Mike Thompson>Their onboarding is basically stalled because of this limitation.
+
+00:00:56.230 --> 00:01:00.890
+<v Jennifer Wu>That's a significant blocker. Alex, can engineering prioritize this?
+
+00:01:01.780 --> 00:01:06.450
+<v Alex Rivera>Yes, we can. We've actually been exploring CSV import options.
+
+00:01:07.340 --> 00:01:11.120
+<v Alex Rivera>The technical challenge is validation at scale.
+
+00:01:12.050 --> 00:01:16.670
+<v Alex Rivera>We need to handle malformed data gracefully and provide clear error messages.
+
+00:01:17.560 --> 00:01:21.230
+<v Jennifer Wu>How long would it take to ship a basic version?
+
+00:01:22.110 --> 00:01:26.780
+<v Alex Rivera>For CSV with basic validation? Probably two sprints.
+
+00:01:27.670 --> 00:01:32.340
+<v Alex Rivera>If we want Excel support and advanced error handling, add another sprint.
+
+00:01:33.230 --> 00:01:36.890
+<v Jennifer Wu>Let's start with CSV and iterate from there.
+
+00:01:37.780 --> 00:01:41.450
+<v Mike Thompson>That would be huge. What else is on the list?
+
+00:01:42.340 --> 00:01:46.120
+<v Mike Thompson>Export functionality is another common request.
+
+00:01:47.050 --> 00:01:51.670
+<v Mike Thompson>Customers want to export their data for reporting and compliance.
+
+00:01:52.560 --> 00:01:57.230
+<v Mike Thompson>Currently the only way is to manually copy-paste or use our API.
+
+00:01:58.120 --> 00:02:02.780
+<v Mike Thompson>But not all users are technical enough for the API approach.
+
+00:02:03.670 --> 00:02:08.340
+<v Jennifer Wu>That seems like a natural pairing with the import feature. Export and import.
+
+00:02:09.230 --> 00:02:12.890
+<v Alex Rivera>Agreed. We could build them together.
+
+00:02:13.780 --> 00:02:18.450
+<v Alex Rivera>CSV export is actually easier than import. Probably just a few days of work.
+
+00:02:19.340 --> 00:02:23.120
+<v Jennifer Wu>Perfect. What other themes are you seeing Mike?
+
+00:02:24.050 --> 00:02:28.670
+<v Mike Thompson>Performance issues with large datasets keep coming up.
+
+00:02:29.560 --> 00:02:34.230
+<v Mike Thompson>Once customers have 5000+ records, the dashboard starts to slow down.
+
+00:02:35.120 --> 00:02:39.780
+<v Mike Thompson>We've had three tickets about timeouts when loading reports.
+
+00:02:40.670 --> 00:02:45.340
+<v Alex Rivera>Yeah, we're aware of this. It's a pagination and query optimization issue.
+
+00:02:46.230 --> 00:02:50.890
+<v Alex Rivera>We're loading too much data client-side. Need to implement server-side filtering.
+
+00:02:51.780 --> 00:02:56.450
+<v Alex Rivera>Also the database queries aren't properly indexed for these large datasets.
+
+00:02:57.340 --> 00:03:01.120
+<v Jennifer Wu>Is this something we can tackle in Q1?
+
+00:03:02.050 --> 00:03:06.670
+<v Alex Rivera>Absolutely. I'd say it's higher priority than some new features.
+
+00:03:07.560 --> 00:03:12.230
+<v Alex Rivera>Performance directly impacts user experience and retention.
+
+00:03:13.120 --> 00:03:17.780
+<v Jennifer Wu>Agreed. Let's make performance optimization a Q1 OKR.
+
+00:03:18.670 --> 00:03:22.340
+<v Sarah Kim>Can I add something? I've been hearing about webhook requests.
+
+00:03:23.230 --> 00:03:27.890
+<v Sarah Kim>Customers want real-time notifications when certain events happen.
+
+00:03:28.780 --> 00:03:33.450
+<v Sarah Kim>For example, when a new record is created or when data changes.
+
+00:03:34.340 --> 00:03:39.120
+<v Sarah Kim>This would enable integrations with Slack, Teams, and custom workflows.
+
+00:03:40.050 --> 00:03:44.670
+<v Alex Rivera>Webhooks are definitely doable. We already have the event system internally.
+
+00:03:45.560 --> 00:03:50.230
+<v Alex Rivera>It's mainly about exposing it through an API and adding retry logic.
+
+00:03:51.120 --> 00:03:54.780
+<v Jennifer Wu>How does that compare to other items in terms of effort?
+
+00:03:55.670 --> 00:04:00.340
+<v Alex Rivera>Medium effort. Maybe one sprint for basic webhooks.
+
+00:04:01.230 --> 00:04:05.890
+<v Alex Rivera>But we'd need to think about rate limiting and security.
+
+00:04:06.780 --> 00:04:11.450
+<v Jennifer Wu>Let's put webhooks on the Q1 roadmap but below import/export and performance.
+
+00:04:12.340 --> 00:04:16.120
+<v Mike Thompson>One more thing - mobile responsiveness.
+
+00:04:17.050 --> 00:04:21.670
+<v Mike Thompson>Several customers mentioned the UI doesn't work well on tablets.
+
+00:04:22.560 --> 00:04:27.230
+<v Mike Thompson>The tables and charts don't resize properly on smaller screens.
+
+00:04:28.120 --> 00:04:32.780
+<v Sarah Kim>Yeah, we're seeing this in our analytics too. About 15% of traffic is mobile.
+
+00:04:33.670 --> 00:04:38.340
+<v Sarah Kim>But the bounce rate on mobile is way higher than desktop.
+
+00:04:39.230 --> 00:04:43.890
+<v Alex Rivera>This is more of a frontend refactor. We'd need to update our component library.
+
+00:04:44.780 --> 00:04:49.450
+<v Alex Rivera>Not trivial but definitely important for user experience.
+
+00:04:50.340 --> 00:04:54.120
+<v Jennifer Wu>Let's plan for this in Q2. Q1 is already pretty full.
+
+00:04:55.050 --> 00:04:59.670
+<v Jennifer Wu>To summarize: Q1 priorities are bulk import, export, and performance optimization.
+
+00:05:00.560 --> 00:05:05.230
+<v Jennifer Wu>Webhooks if we have capacity. Mobile responsiveness moves to Q2.
+
+00:05:06.120 --> 00:05:09.780
+<v Mike Thompson>Sounds good. This aligns well with what customers are asking for.
+
+00:05:10.670 --> 00:05:14.340
+<v Jennifer Wu>Great. Alex, can you break these down into tickets after this meeting?
+
+00:05:15.230 --> 00:05:17.890
+<v Alex Rivera>Yep, I'll have them ready by end of day.
+
+00:05:18.780 --> 00:05:22.450
+<v Jennifer Wu>Perfect. Thanks everyone for the productive discussion.

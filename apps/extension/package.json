@@ -1,0 +1,10 @@
+{
+  "name": "produckai-extension",
+  "version": "1.0.0",
+  "description": "ProduckAI Chrome Extension for Jira",
+  "scripts": {
+    "build": "echo 'Extension ready for loading' && echo 'Load unpacked extension from this directory'"
+  },
+  "author": "ProduckAI",
+  "license": "MIT"
+}

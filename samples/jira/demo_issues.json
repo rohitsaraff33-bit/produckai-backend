@@ -1,0 +1,137 @@
+[
+  {
+    "key": "PROD-101",
+    "title": "Fix mobile app crashes during file upload",
+    "description": "Users report frequent crashes when uploading files larger than 10MB on iOS and Android. Need to investigate memory management and add proper error handling.",
+    "status": "Open",
+    "priority": "High",
+    "account": "Acme Corp",
+    "created_at": "2024-01-15T10:00:00Z"
+  },
+  {
+    "key": "PROD-102",
+    "title": "Optimize dashboard loading performance",
+    "description": "Dashboard takes 30+ seconds to load for users with large datasets. Need to implement pagination, lazy loading, and caching strategies.",
+    "status": "In Progress",
+    "priority": "High",
+    "account": "TechStart Inc",
+    "created_at": "2024-01-16T11:00:00Z"
+  },
+  {
+    "key": "PROD-103",
+    "title": "Implement dark mode theme",
+    "description": "Multiple customers requesting dark mode for better usability during night hours. Should include system preference detection and manual toggle.",
+    "status": "Open",
+    "priority": "Medium",
+    "account": "SmallBiz LLC",
+    "created_at": "2024-01-17T09:00:00Z"
+  },
+  {
+    "key": "PROD-104",
+    "title": "Fix CSV export timeout errors",
+    "description": "CSV export fails with timeout errors for reports with more than 10k rows. Need to implement chunked export or background job processing.",
+    "status": "Open",
+    "priority": "Critical",
+    "account": "Enterprise Solutions",
+    "created_at": "2024-01-18T14:00:00Z"
+  },
+  {
+    "key": "PROD-105",
+    "title": "Improve search relevance and ranking",
+    "description": "Current search doesn't return exact matches and ranking algorithm needs improvement. Consider implementing full-text search with proper scoring.",
+    "status": "Open",
+    "priority": "Medium",
+    "account": "MidCo Industries",
+    "created_at": "2024-01-19T10:30:00Z"
+  },
+  {
+    "key": "PROD-106",
+    "title": "Add SSO/SAML integration",
+    "description": "Enterprise customers require SSO for security compliance. Implement SAML 2.0 support with common identity providers (Okta, Azure AD, Google).",
+    "status": "Planned",
+    "priority": "High",
+    "account": "Enterprise Solutions",
+    "created_at": "2024-01-20T08:00:00Z"
+  },
+  {
+    "key": "PROD-107",
+    "title": "Increase API rate limits for enterprise",
+    "description": "Current rate limits (100 req/min) are too restrictive for enterprise integrations. Need tiered rate limiting based on plan.",
+    "status": "Open",
+    "priority": "Medium",
+    "account": "TechStart Inc",
+    "created_at": "2024-01-21T13:00:00Z"
+  },
+  {
+    "key": "PROD-108",
+    "title": "Optimize mobile app battery usage",
+    "description": "Mobile app is consuming excessive battery. Need to profile and optimize background tasks, reduce polling frequency, and improve network efficiency.",
+    "status": "In Progress",
+    "priority": "Medium",
+    "account": "SmallBiz LLC",
+    "created_at": "2024-01-22T11:00:00Z"
+  },
+  {
+    "key": "PROD-109",
+    "title": "Fix bulk import failures for large datasets",
+    "description": "Bulk import fails for datasets over 10k records. Need to implement streaming import with progress tracking and error recovery.",
+    "status": "Open",
+    "priority": "High",
+    "account": "MidCo Industries",
+    "created_at": "2024-01-23T09:30:00Z"
+  },
+  {
+    "key": "PROD-110",
+    "title": "Improve mobile responsive design for tablets",
+    "description": "Current responsive design breaks on tablet devices. Need to add proper breakpoints and optimize layout for 7-12 inch screens.",
+    "status": "Open",
+    "priority": "Low",
+    "account": "TechStart Inc",
+    "created_at": "2024-01-24T15:00:00Z"
+  },
+  {
+    "key": "PROD-111",
+    "title": "Increase file upload size limit",
+    "description": "Current 10MB limit is too restrictive. Users need to upload files up to 50MB (presentations, videos, large datasets).",
+    "status": "Open",
+    "priority": "Medium",
+    "account": "SmallBiz LLC",
+    "created_at": "2024-01-25T10:00:00Z"
+  },
+  {
+    "key": "PROD-112",
+    "title": "Add API webhooks for real-time notifications",
+    "description": "Customers need webhook support for real-time event notifications instead of polling. Implement webhook registration and delivery system.",
+    "status": "Planned",
+    "priority": "Medium",
+    "account": "TechStart Inc",
+    "created_at": "2024-01-26T14:30:00Z"
+  },
+  {
+    "key": "PROD-113",
+    "title": "Improve error handling for batch operations",
+    "description": "Batch operations fail silently without clear error messages. Need to add proper error reporting, partial success handling, and retry logic.",
+    "status": "Open",
+    "priority": "Medium",
+    "account": "MidCo Industries",
+    "created_at": "2024-01-27T09:00:00Z"
+  },
+  {
+    "key": "PROD-114",
+    "title": "Add advanced search filters and boolean operators",
+    "description": "Power users need advanced search with boolean operators (AND, OR, NOT) and complex field filtering.",
+    "status": "Open",
+    "priority": "Low",
+    "account": "MidCo Industries",
+    "created_at": "2024-01-28T11:00:00Z"
+  },
+  {
+    "key": "PROD-115",
+    "title": "Support additional export formats (Excel, PDF)",
+    "description": "Currently only CSV export is supported. Add Excel (.xlsx) and PDF export formats for better reporting capabilities.",
+    "status": "Open",
+    "priority": "Low",
+    "account": "Acme Corp",
+    "created_at": "2024-01-29T10:00:00Z"
+  }
+]

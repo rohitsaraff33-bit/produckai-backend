@@ -1,0 +1,137 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: produckai-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-produckai}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-produckai_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-produckai}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-produckai}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - produckai
+
+  redis:
+    image: redis:7-alpine
+    container_name: produckai-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - produckai
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: produckai-api
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-produckai}:${POSTGRES_PASSWORD:-produckai_dev_password}@postgres:5432/${POSTGRES_DB:-produckai}
+      REDIS_URL: redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./apps/api:/app/apps/api
+      - ./packages:/app/packages
+      - ./samples:/app/samples
+      - model_cache:/root/.cache/huggingface
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - produckai
+    command: uvicorn apps.api.main:app --host 0.0.0.0 --port 8000 --reload
+
+  worker:
+    build:
+      context: .
+      dockerfile: apps/worker/Dockerfile
+    container_name: produckai-worker
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-produckai}:${POSTGRES_PASSWORD:-produckai_dev_password}@postgres:5432/${POSTGRES_DB:-produckai}
+      REDIS_URL: redis://redis:6379/0
+    volumes:
+      - ./apps/worker:/app/apps/worker
+      - ./apps/api:/app/apps/api
+      - ./packages:/app/packages
+      - ./samples:/app/samples
+      - model_cache:/root/.cache/huggingface
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - produckai
+    command: celery -A apps.worker.celery_app worker --loglevel=info --concurrency=2
+
+  beat:
+    build:
+      context: .
+      dockerfile: apps/worker/Dockerfile
+    container_name: produckai-beat
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-produckai}:${POSTGRES_PASSWORD:-produckai_dev_password}@postgres:5432/${POSTGRES_DB:-produckai}
+      REDIS_URL: redis://redis:6379/0
+    volumes:
+      - ./apps/worker:/app/apps/worker
+      - ./apps/api:/app/apps/api
+      - ./packages:/app/packages
+      - model_cache:/root/.cache/huggingface
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - produckai
+    command: celery -A apps.worker.celery_app beat --loglevel=info
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: produckai-web
+    env_file:
+      - .env
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./apps/web:/app/apps/web
+      - /app/apps/web/node_modules
+      - /app/apps/web/.next
+    depends_on:
+      - api
+    networks:
+      - produckai
+    command: npm run dev
+
+volumes:
+  postgres_data:
+  model_cache:
+
+networks:
+  produckai:
+    driver: bridge

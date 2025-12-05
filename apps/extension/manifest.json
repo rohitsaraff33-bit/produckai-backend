@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "ProduckAI - Jira Helper",
+  "version": "1.0.0",
+  "description": "Show ThemeScore and customer feedback for Jira tickets",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.atlassian.net/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.atlassian.net/browse/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

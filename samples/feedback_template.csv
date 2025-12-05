@@ -1,0 +1,11 @@
+Company Name,ACV,Company Contact,Feedback
+"Acme Corp",250000,"john.doe@acmecorp.com","The mobile app crashes when exporting large datasets to CSV. This is blocking our quarterly reporting workflow."
+"TechStart Inc",500000,"sarah.smith@techstart.com","We urgently need SSO/SAML integration for enterprise deployment. Our security team won't approve without it."
+"DataFlow LLC",100000,"mike.johnson@dataflow.com","Dark mode would be a great addition for users who work late nights. Many of our team members have requested this."
+"BigCo Industries",1000000,"lisa.chen@bigco.com","The search functionality is too slow when filtering by multiple criteria. It takes 10+ seconds to load results."
+"CloudSync",75000,"alex.martinez@cloudsync.com","Export to PDF feature has formatting issues - tables are cut off and images don't render properly."
+"StartupXYZ",50000,"emma.wilson@startupxyz.com","Mobile notifications are not working on Android devices. iOS works fine but Android users get no alerts."
+"Enterprise Solutions",800000,"david.brown@enterprise.com","Would love to see integrations with Slack and Microsoft Teams for real-time updates and collaboration."
+"Data Analytics Co",350000,"rachel.davis@dataanalytics.com","The bulk import feature times out with files larger than 100MB. We need to process 500MB+ files."
+"ProductTeam Inc",200000,"james.taylor@productteam.com","Custom fields and metadata support would help us track project-specific information more effectively."
+"API Users Ltd",125000,"olivia.anderson@apiusers.com","API rate limits are too restrictive for our use case. We need higher limits or throttling options."
