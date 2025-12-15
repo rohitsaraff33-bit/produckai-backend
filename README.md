@@ -34,9 +34,38 @@ open http://localhost:8000/docs
 **That's it!** You now have the **complete ProduckAI platform** running locally:
 - ✅ **Backend API** at http://localhost:8000 (FastAPI)
 - ✅ **Frontend Web UI** at http://localhost:3000 (Next.js)
-- ✅ Demo feedback from Slack, Jira, Google Docs, and Zoom
-- ✅ Clustered themes with priority scores
-- ✅ AI-generated insights ready for PRD generation
+- ✅ **48 demo feedback** items from Slack, Jira, Google Docs, and Zoom
+- ✅ **Clustered themes** with priority scores
+- ✅ **AI-generated insights** ready for PRD generation
+
+---
+
+## 🔄 Moving from Demo Data to Your Own Data
+
+Once you've explored the demo, you can clear it and start using your own feedback data:
+
+### Clear Demo Data
+
+```bash
+# ⚠️ WARNING: This deletes ALL data!
+make seed-clear
+
+# Then start fresh with your data
+# Option 1: Upload CSV via Web UI (http://localhost:3000/upload)
+# Option 2: Connect integrations (Slack, Jira, etc.) at http://localhost:3000/integrations
+# Option 3: Use the API (http://localhost:8000/docs)
+```
+
+### Re-seed Demo Data
+
+If you want to restore the demo data:
+
+```bash
+make seed       # Load demo data
+make cluster    # Generate insights
+```
+
+---
 
 ## 📊 What You'll See
 

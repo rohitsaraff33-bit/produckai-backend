@@ -40,12 +40,34 @@ migrate-down: ## Rollback one migration
 	docker compose exec api alembic downgrade -1
 
 seed: ## Seed database with demo data (non-destructive)
-	docker compose exec api python -m apps.api.scripts.seed_demo
+	@echo "🌱 Seeding demo data..."
+	@docker compose exec api python -m apps.api.scripts.seed_demo
+	@echo ""
+	@echo "✅ Validating seed results..."
+	@docker compose exec -T api python -c "from apps.api.database import get_db_context; from apps.api.models import Feedback; \
+	db_ctx = get_db_context(); db = db_ctx.__enter__(); \
+	count = db.query(Feedback).count(); \
+	print(f'📊 Total feedback items: {count}'); \
+	db_ctx.__exit__(None, None, None); \
+	exit(0 if count >= 40 else 1)" || (echo "❌ ERROR: Expected at least 40 feedback items. Seed may have failed." && exit 1)
+	@echo "✅ Seed validation passed!"
+	@echo ""
+	@echo "🎯 Next step: Run 'make cluster' to generate insights"
 
 seed-demo: seed ## Alias for seed
 
-seed-full: ## Reset and seed database with demo data
-	docker compose exec api python -m apps.api.scripts.seed_demo --reset
+seed-clear: ## Clear all demo data and start fresh
+	@echo "⚠️  WARNING: This will delete ALL data from the database!"
+	@echo "Press Ctrl+C within 5 seconds to cancel..."
+	@sleep 5
+	@echo "🗑️  Clearing database..."
+	@docker compose exec -T api python -c "from apps.api.database import get_db_context, engine; from apps.api.models import Base; \
+	Base.metadata.drop_all(bind=engine); \
+	Base.metadata.create_all(bind=engine); \
+	print('✅ Database cleared successfully')"
+	@echo "🔄 Running migrations..."
+	@docker compose exec api alembic upgrade head
+	@echo "✅ Database reset complete! Run 'make seed' to load demo data."
 
 cluster: ## Run clustering pipeline on current data
 	docker compose exec api python -m apps.api.scripts.run_clustering
@@ -101,10 +123,31 @@ web-build: ## Build Next.js app
 	cd apps/web && npm install && npm run build
 
 demo: up migrate seed cluster ## Quick start: bring up services, migrate, seed, and cluster
-	@echo "✅ Demo mode ready!"
-	@echo "📊 API: http://localhost:8000"
-	@echo "🎨 Web: http://localhost:3000"
-	@echo "📚 Docs: http://localhost:8000/docs"
+	@echo ""
+	@echo "========================================="
+	@echo "✅ ProduckAI Demo Mode Ready!"
+	@echo "========================================="
+	@echo ""
+	@echo "📊 Backend API:  http://localhost:8000"
+	@echo "🎨 Web UI:       http://localhost:3000"
+	@echo "📚 API Docs:     http://localhost:8000/docs"
+	@echo ""
+	@echo "🎯 What's loaded:"
+	@docker compose exec -T api python -c "from apps.api.database import get_db_context; from apps.api.models import Feedback, Customer; \
+	from apps.api.models.theme import Theme, Insight; \
+	db_ctx = get_db_context(); db = db_ctx.__enter__(); \
+	feedback_count = db.query(Feedback).count(); \
+	customer_count = db.query(Customer).count(); \
+	theme_count = db.query(Theme).count(); \
+	insight_count = db.query(Insight).count(); \
+	print(f'   • {customer_count} demo customers'); \
+	print(f'   • {feedback_count} feedback items'); \
+	print(f'   • {theme_count} themes'); \
+	print(f'   • {insight_count} insights'); \
+	db_ctx.__exit__(None, None, None)"
+	@echo ""
+	@echo "🚀 Open http://localhost:3000 to explore!"
+	@echo "========================================="
 
 status: ## Check health of all services
 	@echo "Checking service health..."
